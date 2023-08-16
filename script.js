@@ -1,21 +1,34 @@
 
-const myLibrary = ['Enders Game'];
+const myLibrary = [
+    {
+    title: "A Game of Thrones",
+    author: "George R. R. martin",
+    pages: 694,
+    read: false
+    }
+];
 
 function Book(author, title, pages, read){
     this.author = author;
     this.title = title;
     this.pages = pages;
     this.read = read;
-    this.sayBook = function() {
-        console.log(author, title, pages, read)
-      }
-
-
+    
 }
+
+const addBookToLibrary = () => {
+    let title = $titleInput.value;
+    let author = $authorInput.value;
+    let pages = $pagesInput.value;
+    //let read = need get checked box value
+    let newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
+}
+
 const addButton = document.getElementById("addBookButton");
 const formContainer = document.getElementById('form-container');
 
-addButton.addEventListener('click', (e)=>{
+addButton.addEventListener('click', e=>{
     openForm();
 });
 formContainer.addEventListener('click', e => {
@@ -34,6 +47,19 @@ function openForm(){
     titleInput.type = 'text';
     titleInput.name = 'title';
     titleLabel.appendChild(titleInput);
+    const authorLabel = document.createElement('label');
+    authorLabel.textContent = "Author:";
+    const authorInput = document.createElement('input');
+    authorInput.type = 'text';
+    authorInput.name = 'title';
+    authorLabel.appendChild(authorInput);
+    const pagesLabel = document.createElement('label');
+    pagesLabel.textContent = 'Pages';
+    const pagesInput = document.createElement('input');
+    pagesInput.type = 'text';
+    pagesInput.name = 'pages';
+    pagesLabel.appendChild(pagesInput);
+    
 
 
 
@@ -42,6 +68,8 @@ function openForm(){
     submitButton.textContent = 'Add Book';
 
     form.appendChild(titleLabel);
+    form.appendChild(authorLabel);
+    form.appendChild(pagesLabel);
     form.append(document.createElement('br'));
     form.appendChild(submitButton);
 
