@@ -4,7 +4,7 @@ const myLibrary = [
     title: "A Game of Thrones",
     author: "George R. R. martin",
     pages: 694,
-    read: false
+    read: "Yes"
     }
 ];
 
@@ -18,8 +18,7 @@ function Book(author, title, pages, read){
 const titleInput = document.getElementById("title");
 const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pages");
-
-
+const readInput = document.getElementsByName('read');
 
 const addBookToLibrary = () => {
     let title = titleInput.value;
@@ -27,8 +26,35 @@ const addBookToLibrary = () => {
     let author = authorInput.value;
     let pages = pagesInput.value;
     let read = document.querySelector('input[name="read"]:checked').value;
+    console.log(read)
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
+
+    titleInput.value = "";
+    authorInput.value = "";
+    pagesInput.value = "";
+    readInput[0].checked = true;
+    
+    const bookDiv = document.createElement('div');
+    bookDiv.classList.add('book');
+    bookDiv.textContent = `${newBook.title} by ${newBook.author}, ${newBook.pages} pages`;
+
+    if (newBook.read === "Yes") {
+        bookDiv.textContent += " (Read)";
+    } else {
+        bookDiv.textContent += " (Not Read)";
+    }
+    
+    bookContainer.appendChild(bookDiv);
+    console.log(myLibrary);
+}
+//may need to add on submit in HTML
+function validateForm(){
+    const check = docuement.forms["bookForm"]["title"].value;
+    if(form == ""){
+        alert('Must fillout form');
+        return false;
+    }
 }
 
 const addButton = document.getElementById("addBookButton");
@@ -43,12 +69,8 @@ addButton.addEventListener('click', (e) =>{
 submitButton.addEventListener('click', (e)=>{
     e.preventDefault();
     addBookToLibrary();
+    
 });
-
-
-
-
-
 
 myLibrary.forEach(book =>{
     const bookDiv = document.createElement('div');

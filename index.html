@@ -21,7 +21,8 @@
         </div>
 
         <div id="form-container" style="display:none;">
-            <form id="add-book-form">
+            <form id="add-book-form" name="bookForm" onsubmit="return validateForm()">
+                
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title">
                 <br><label for="author">Author:</label>
@@ -30,9 +31,9 @@
                 <input type="text" id="pages" name="pages">
                 <div id="read-text">Read?</div>
                 <br><label for="yes">Yes: </label>
-                <input type="radio" id="yes" name="yes" value="Yes">
+                <input type="radio" id="yes" name="read" value="Yes">
                 <label for="no">No:</label>
-                <input type="radio" id="no" name="no" value="No">
+                <input type="radio" id="no" name="read" value="No">
                 <label for="submit">Submit</label>
                 <input type="submit" id="submit" name="submit">
             </form>
