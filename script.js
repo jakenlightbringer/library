@@ -30,6 +30,12 @@ const addBookToLibrary = () => {
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
 
+    if (title === "" || author === "" || pages === "" || read === null) {
+        alert('Must Fill out All Fields');
+        return false;
+    }
+
+
     titleInput.value = "";
     authorInput.value = "";
     pagesInput.value = "";
@@ -49,13 +55,11 @@ const addBookToLibrary = () => {
     console.log(myLibrary);
 }
 //may need to add on submit in HTML
-function validateForm(){
-    const check = docuement.forms["bookForm"]["title"].value;
-    if(form == ""){
-        alert('Must fillout form');
-        return false;
-    }
+function validateForm() {
+    const check = document.forms["bookForm"]["title"].value;
+    
 }
+
 
 const addButton = document.getElementById("addBookButton");
 const formContainer = document.getElementById('form-container');
