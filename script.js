@@ -42,8 +42,13 @@ const addBookToLibrary = () => {
     readInput[0].checked = true;
     
     const bookDiv = document.createElement('div');
+    const deleteButton = document.createElement('button');
+    const readButton = document.createElement('button');
+
     bookDiv.classList.add('book');
     bookDiv.textContent = `${newBook.title} by ${newBook.author}, ${newBook.pages} pages`;
+    deleteButton.textContent = 'X';
+    readButton.textContent = 'Read Status';
 
     if (newBook.read === "Yes") {
         bookDiv.textContent += " (Read)";
@@ -52,9 +57,17 @@ const addBookToLibrary = () => {
     }
     
     bookContainer.appendChild(bookDiv);
+    bookContainer.appendChild(deleteButton);
+    bookContainer.appendChild(readButton);
     console.log(myLibrary);
+    deleteButton.addEventListener('click', (e) =>{
+        bookContainer.removeChild(bookDiv);
+        bookContainer.removeChild(deleteButton);
+    });
+
+
 }
-//may need to add on submit in HTML
+
 function validateForm() {
     const check = document.forms["bookForm"]["title"].value;
     
