@@ -48,6 +48,7 @@ const addBookToLibrary = () => {
     bookDiv.classList.add('book');
     bookDiv.textContent = `${newBook.title} by ${newBook.author}, ${newBook.pages} pages`;
     deleteButton.textContent = 'X';
+    deleteButton.classList.add('delete-button');
     readButton.textContent = 'Read Status';
 
     if (newBook.read === "Yes") {
@@ -60,9 +61,22 @@ const addBookToLibrary = () => {
     bookContainer.appendChild(deleteButton);
     bookContainer.appendChild(readButton);
     console.log(myLibrary);
+
+    readButton.addEventListener('click', (e) => {
+        if (newBook.read === "Yes") {
+            newBook.read = "No"; 
+            bookDiv.textContent = `${newBook.title} by ${newBook.author}, ${newBook.pages} pages (Not Read)`;
+        } else {
+            newBook.read = "Yes"; 
+            bookDiv.textContent = `${newBook.title} by ${newBook.author}, ${newBook.pages} pages (Read)`;
+        }
+    });
+    
+
     deleteButton.addEventListener('click', (e) =>{
         bookContainer.removeChild(bookDiv);
         bookContainer.removeChild(deleteButton);
+        bookContainer.removeChild(readButton);
     });
 
 
@@ -70,6 +84,7 @@ const addBookToLibrary = () => {
 
 function validateForm() {
     const check = document.forms["bookForm"]["title"].value;
+
     
 }
 
@@ -85,6 +100,7 @@ addButton.addEventListener('click', (e) =>{
 });
 submitButton.addEventListener('click', (e)=>{
     e.preventDefault();
+    formContainer.style.display = "none";
     addBookToLibrary();
     
 });
